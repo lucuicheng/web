@@ -17,9 +17,6 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-  <link rel="stylesheet" href="bower_components/owl-carousel/owl-carousel/owl.carousel.css" />
-  <link rel="stylesheet" href="bower_components/owl-carousel/owl-carousel/owl.theme.css" />
-  <link rel="stylesheet" href="bower_components/owl-carousel/owl-carousel/owl.transitions.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -29,11 +26,19 @@
   <!-- endcustom -->
   <!-- endbuild -->
 </head>
-<body ng-app="owWebApp">
+<body ng-app="owWebApp" ng-controller="applicationController">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
 <![endif]-->
+
+<div ng-if="currentUser">Welcome, {{ currentUser.name }}</div>
+<div ng-if="isAuthorized(userRoles.admin)">You're admin.</div>
+<div ng-switch on="currentUser.role">
+  <div ng-switch-when="userRoles.admin">You're admin.</div>
+  <div ng-switch-when="userRoles.editor">You're editor.</div>
+  <div ng-switch-default>You're something else.Or, you are not login</div>
+</div>
 
 <!-- ng-animate="'view'" -->
 <div class="main" ui-view="">
@@ -51,7 +56,6 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/owl-carousel/owl-carousel/owl.carousel.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
@@ -66,11 +70,15 @@
 <script src="scripts/directives/directive.js"></script>
 <script src="scripts/filters/filter.js"></script>
 <script src="scripts/routes/route.js"></script>
+<script src="scripts/interceptor/interceptor.js"></script>
+<script src="scripts/services/authService.js"></script>
 <script src="scripts/services/commonService.js"></script>
 <script src="scripts/services/teacherService.js"></script>
 <script src="scripts/services/service.js"></script>
 <script src="modules/blank/controllers/controller.js"></script>
 <script src="modules/blank/route.js"></script>
+<script src="modules/login/controllers/controller.js"></script>
+<script src="modules/login/route.js"></script>
 <!-- endcustom -->
 <!-- endbuild -->
 </body>

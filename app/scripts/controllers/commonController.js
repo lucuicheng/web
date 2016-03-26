@@ -1,13 +1,18 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name owWebApp.controller:owWebAppController
- * @description
- * # owWebAppController
- * Controller of the owWebApp
- */
 var commonModuleController = angular.module('commonModuleController', []);
+
+commonModuleController.controller('applicationController',
+  function ($scope, USER_ROLES, authService) {
+
+    $scope.currentUser = null;
+    $scope.userRoles = USER_ROLES;
+    $scope.isAuthorized = authService.isAuthorized;
+
+    $scope.setCurrentUser = function (user) {
+      $scope.currentUser = user;
+    };
+  })
 
 commonModuleController.controller('notFoundCtrl', [
   '$scope',
@@ -19,42 +24,44 @@ commonModuleController.controller('notFoundCtrl', [
 
   }]);
 
-commonModuleController.controller('modalInfoInstanceCtrl', [ '$scope',
-		'$uibModalInstance', 'type', 'message',
-		function($scope, $uibModalInstance, type, message) {
+commonModuleController.controller(
+  'modalInfoInstanceCtrl',
+  function ($scope, $uibModalInstance, type, message) {
 
-			$scope.type = type;
-			$scope.message = message;
+    $scope.type = type;
+    $scope.message = message;
 
-			$scope.ok = function() {
-				$uibModalInstance.close($scope.selected);
-			};
+    $scope.ok = function () {
+      $uibModalInstance.close($scope.selected);
+    };
 
-			$scope.cancel = function() {
-				$uibModalInstance.dismiss('cancel');
-			};
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
 
-		} ]);
+  }
+);
 
-commonModuleController.controller('modalOperateInfoInstanceCtrl', [ '$scope',
-		'$uibModalInstance', 'operate', 'message', 'params',
-		function($scope, $uibModalInstance, operate, message, params) {
+commonModuleController.controller(
+  'modalOperateInfoInstanceCtrl',
+  function ($scope, $uibModalInstance, operate, message, params) {
 
-			$scope.operate = operate;
-			$scope.message = message;
+    $scope.operate = operate;
+    $scope.message = message;
 
-			if (Boolean(params.type)) {
-				$scope.operator = '-';
-			} else {
-				$scope.operator = '+';
-			}
+    if (Boolean(params.type)) {
+      $scope.operator = '-';
+    } else {
+      $scope.operator = '+';
+    }
 
-			$scope.ok = function() {
-				$uibModalInstance.close($scope.selected);
-			};
+    $scope.ok = function () {
+      $uibModalInstance.close($scope.selected);
+    };
 
-			$scope.cancel = function() {
-				$uibModalInstance.dismiss('cancel');
-			};
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
 
-		} ]);
+  }
+);

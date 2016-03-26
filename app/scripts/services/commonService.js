@@ -2,6 +2,7 @@
 
 var commonModuleService = angular.module('commonService', []);
 
+//通用服务方法
 commonModuleService.factory('commonService', function ($http, $state, $q, $uibModal) {
 
   var service = { // our factory definition

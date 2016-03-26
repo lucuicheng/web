@@ -1,6 +1,12 @@
 'use strict';
 
-var appRoute = angular.module('appRoute', ['ngRoute', 'ui.router']);
+var appRoute = angular.module('appRoute',
+  [
+    'ngRoute',
+    'ui.router',
+    'blankModuleRoute',
+    'loginModuleRoute'
+  ]);
 
 appRoute.config(
   function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {

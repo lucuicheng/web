@@ -9,12 +9,14 @@ var webApp = angular.module('owWebApp', ['ngAnimate', 'ngCookies',
 
 webApp
   .config(function ($locationProvider, $httpProvider) {
+    //头信息处理
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
     //location friendly
     //$locationProvider.html5Mode(true);
 
+    //字符集处理
     // Override $http services's default transformRequest
     $httpProvider.defaults.transformRequest = [function (data) {
 
@@ -55,22 +57,50 @@ webApp
       && String(data) !== '[object File]' ? param(data)
         : data;
     }];
+
+    //拦截器
+    $httpProvider.interceptors.push('httpInterceptor');
   });
 
-webApp.run([
-  '$rootScope',
-  '$window',
-  '$location',
-  '$state',
-  '$stateParams',
-  '$log',
-  '$templateCache',
-  '$http',
-  function ($rootScope, $window, $location, $state, $stateParams, $log, $templateCache, $http) {
+//全局常量
+webApp.constant('AUTH_EVENTS', {
+  loginSuccess: 'auth-login-success',
+  loginFailed: 'auth-login-failed',
+  logoutSuccess: 'auth-logout-success',
+  sessionTimeout: 'auth-session-timeout',
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+});
+webApp.constant('USER_ROLES', {
+  all: '*',
+  admin: 'admin',
+  editor: 'editor',
+  guest: 'guest'
+})
+
+webApp.run(
+  function ($rootScope, AUTH_EVENTS, authService) {
 
     //视图开始解析
     $rootScope.$on('$stateChangeStart',
       function (event, toState, toParams, fromState, fromParams) {
+        //访问权限控制
+        var authorizedRoles = null;
+
+        if (!authService.isAuthorized(authorizedRoles)) {
+          event.preventDefault();
+
+          if (authService.isAuthenticated()) {
+            console.log(' user is not allowed')
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+
+          } else {
+            console.log(' user is not logged in')
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+
+          }
+        }
+
       });
 
     //视图解析完成
@@ -78,4 +108,4 @@ webApp.run([
       function (event, toState, toParams, fromState, fromParams) {
       });
 
-  }]);
+  });
