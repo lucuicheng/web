@@ -9,7 +9,7 @@ authService.factory('authService', function ($http, $state, $q, sessionService, 
 
   authService.login = function (credentials) {
     var url = commonService.getBaseParams().url + 'datas/user/detail.json';
-    return commonService.handleSyncData(url, params)
+    return commonService.handleSyncData(url, credentials)
       .then(function(data) {
         sessionService.create(data.id, data.user.id, data.user.role);
 
@@ -27,6 +27,10 @@ authService.factory('authService', function ($http, $state, $q, sessionService, 
     }
     return (authService.isAuthenticated() &&
     authorizedRoles.indexOf(sessionService.userRole) !== -1);
+  };
+
+  authService.permissionCheck = function () {
+    console.log('sd')
   };
 
   return authService;

@@ -3,10 +3,9 @@
 var commonModuleController = angular.module('commonModuleController', []);
 
 commonModuleController.controller('applicationController',
-  function ($scope, USER_ROLES, authService) {
+  function ($scope, authService) {
 
     $scope.currentUser = null;
-    $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = authService.isAuthorized;
 
     $scope.setCurrentUser = function (user) {

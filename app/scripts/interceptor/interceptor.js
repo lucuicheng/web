@@ -3,7 +3,7 @@
 var interceptor = angular.module('interceptor', []);
 
 //拦截器
-interceptor.factory('httpInterceptor', function ($q, $injector, AUTH_EVENTS) {
+interceptor.factory('httpInterceptor', function ($q, $rootScope, $injector, AUTH_EVENTS) {
 
   var httpInterceptor = {
 
@@ -11,6 +11,7 @@ interceptor.factory('httpInterceptor', function ($q, $injector, AUTH_EVENTS) {
       $rootScope.$broadcast({
         401: AUTH_EVENTS.notAuthenticated,
         403: AUTH_EVENTS.notAuthorized,
+        404: AUTH_EVENTS.notAuthorized,
         419: AUTH_EVENTS.sessionTimeout,
         440: AUTH_EVENTS.sessionTimeout
       }[response.status], response);

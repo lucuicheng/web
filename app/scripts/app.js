@@ -71,12 +71,6 @@ webApp.constant('AUTH_EVENTS', {
   notAuthenticated: 'auth-not-authenticated',
   notAuthorized: 'auth-not-authorized'
 });
-webApp.constant('USER_ROLES', {
-  all: '*',
-  admin: 'admin',
-  editor: 'editor',
-  guest: 'guest'
-})
 
 webApp.run(
   function ($rootScope, AUTH_EVENTS, authService) {
@@ -85,9 +79,7 @@ webApp.run(
     $rootScope.$on('$stateChangeStart',
       function (event, toState, toParams, fromState, fromParams) {
         //访问权限控制
-        var authorizedRoles = null;
-
-        if (!authService.isAuthorized(authorizedRoles)) {
+        /*if (!authService.isAuthorized(authorizedRoles)) {
           event.preventDefault();
 
           if (authService.isAuthenticated()) {
@@ -99,7 +91,7 @@ webApp.run(
             $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
 
           }
-        }
+        }*/
 
       });
 

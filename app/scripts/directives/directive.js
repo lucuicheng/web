@@ -24,6 +24,21 @@ appDirective.directive('ngTouchend', [function () {
   };
 }]);
 
+appDirective.directive('operateDialog', function (commonService, AUTH_EVENTS) {
+  return {
+    restrict: 'A',
+    link: function ($scope, elem, attr) {
+      var showDialog = function () {
+        commonService.openOperateModel(null, null, '', {})
+      };
+
+      $scope.$on(AUTH_EVENTS.notAuthenticated, showDialog);
+      $scope.$on(AUTH_EVENTS.notAuthorized, showDialog);
+      $scope.$on(AUTH_EVENTS.sessionTimeout, showDialog)
+    }
+  };
+})
+
 //播放指令-播放
 appDirective.directive("ngPlay", ["$timeout", "$interval", function (timer, $interval) {
   return {

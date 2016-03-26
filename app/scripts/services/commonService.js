@@ -36,7 +36,7 @@ commonModuleService.factory('commonService', function ($http, $state, $q, $uibMo
     handleSyncData: function (url, params) {
       var deferred = $q.defer();
 
-      $http.post(url, params)
+      $http.get(url, params)
         .success(function (data, status, headers, config) {
           deferred.resolve(data);
         })
@@ -47,12 +47,15 @@ commonModuleService.factory('commonService', function ($http, $state, $q, $uibMo
       return deferred.promise;
     },
 
-    openOperateModel: function (operate, message, params) {
+    openOperateModel: function (target, operate, message, params) {
       var base = this;
       var modalInstance = $uibModal.open({
         templateUrl: 'modules/common/views/operateModal.html',
         controller: 'modalOperateInfoInstanceCtrl',
         resolve: {
+          target: function () {
+            return target;
+          },
           operate: function () {
             return operate;
           },
@@ -67,12 +70,14 @@ commonModuleService.factory('commonService', function ($http, $state, $q, $uibMo
       modalInstance.opened.then(function () {//
         setTimeout(function () {
           modalInstance.close('auto close');
-        }, 1000);
+        }, 1500);
       });
       modalInstance.result.then(function (result) {
         //更新操作记录数 及 插入操作历史记录
-        var url = base.getBaseParams().url + 'datas/' + operate + '/save';
-        $http.post(url, params);
+        if(operate != null && target != null) {
+          var url = base.getBaseParams().url + 'datas/'+target + '/' + operate + 'History/save';
+          $http.post(url, params);
+        }//TODO 优化只弹出一次
 
       }, function (reason) {
         console.log(reason);
