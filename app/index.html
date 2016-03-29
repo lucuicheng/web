@@ -32,8 +32,11 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
+<div ng-if="loading">
+    这里是进度条
+</div>
 <!-- ng-animate="'view'" -->
-<div class="main" ui-view="">
+<div class="main" auth-info ui-view="">
 </div>
 
 <!-- build:js(.) scripts/vendor.js -->
@@ -69,8 +72,6 @@
 <script src="scripts/services/teacherService.js"></script>
 <script src="modules/blank/controllers/controller.js"></script>
 <script src="modules/blank/route.js"></script>
-<script src="modules/login/controllers/controller.js"></script>
-<script src="modules/login/route.js"></script>
 <!-- endcustom -->
 <!-- endbuild -->
 </body>

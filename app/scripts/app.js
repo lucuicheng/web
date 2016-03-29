@@ -1,103 +1,72 @@
 'use strict';
 
 var webApp = angular.module('owWebApp', ['ngAnimate', 'ngCookies',
-  'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router',
-  'ui.bootstrap',
+    'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router',
+    'ui.bootstrap',
 
-  'appController', 'appService', 'appRoute',
-  'appDirective', 'appFilter']);
+    'appController', 'appService', 'appRoute',
+    'appDirective', 'appFilter']);
 
 webApp
-  .config(function ($locationProvider, $httpProvider) {
-    //头信息处理
-    $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    .config(function ($locationProvider, $httpProvider) {
+        //拦截器
+        $httpProvider.interceptors.push('httpInterceptor');
+    });
 
-    //location friendly
-    //$locationProvider.html5Mode(true);
-
-    //字符集处理
-    // Override $http services's default transformRequest
-    $httpProvider.defaults.transformRequest = [function (data) {
-
-      var param = function (obj) {
-        var query = '';
-        var name, value, fullSubName, subName, subValue, innerObj, i;
-
-        for (name in obj) {
-          value = obj[name];
-
-          if (value instanceof Array) {
-            for (i = 0; i < value.length; ++i) {
-              subValue = value[i];
-              fullSubName = name + '[' + i + ']';
-              innerObj = {};
-              innerObj[fullSubName] = subValue;
-              query += param(innerObj) + '&';
-            }
-          } else if (value instanceof Object) {
-            for (subName in value) {
-              subValue = value[subName];
-              fullSubName = name + '[' + subName + ']';
-              innerObj = {};
-              innerObj[fullSubName] = subValue;
-              query += param(innerObj) + '&';
-            }
-          } else if (value !== undefined && value !== null) {
-            query += encodeURIComponent(name) + '='
-              + encodeURIComponent(value) + '&';
-          }
-        }
-
-        return query.length ? query.substr(0, query.length - 1)
-          : query;
-      };
-
-      return angular.isObject(data)
-      && String(data) !== '[object File]' ? param(data)
-        : data;
-    }];
-
-    //拦截器
-    $httpProvider.interceptors.push('httpInterceptor');
-  });
-
-//全局常量
+//全局常量, 权限相关的事件
 webApp.constant('AUTH_EVENTS', {
-  loginSuccess: 'auth-login-success',
-  loginFailed: 'auth-login-failed',
-  logoutSuccess: 'auth-logout-success',
-  sessionTimeout: 'auth-session-timeout',
-  notAuthenticated: 'auth-not-authenticated',
-  notAuthorized: 'auth-not-authorized'
+    loginSuccess: 'auth-login-success',
+    loginFailed: 'auth-login-failed',
+    logoutSuccess: 'auth-logout-success',
+    sessionTimeout: 'auth-session-timeout',
+    notAuthenticated: 'auth-not-authenticated',
+    notAuthorized: 'auth-not-authorized'
+});
+//全局常量, 权限相关的几个页面(弹出框内容？)地址
+webApp.constant('AUTH_PAGES', {
+    login:'/login.htm',
+    loginSuccess: '/login-success.htm',
+    loginFailed: '/login-failed.htm',
+    logoutSuccess: '/logout-success.htm',
+    sessionTimeout: '/session-timeout.htm',
+    notAuthenticated: '/not-authenticated.htm',
+    notAuthorized: '/not-authorized.htm'
 });
 
+//具体的权限实施
 webApp.run(
-  function ($rootScope, AUTH_EVENTS, authService) {
+    function ($rootScope, $location, AUTH_EVENTS, authService) {
 
-    //视图开始解析
-    $rootScope.$on('$stateChangeStart',
-      function (event, toState, toParams, fromState, fromParams) {
-        //访问权限控制
-        /*if (!authService.isAuthorized(authorizedRoles)) {
-          event.preventDefault();
+        //视图开始解析
+        $rootScope.$on('$stateChangeStart',
+            function (event, toState, toParams, fromState, fromParams) {
 
-          if (authService.isAuthenticated()) {
-            console.log(' user is not allowed')
-            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                //用户认证及访问权限控制
+                if(!authService.isAuthenticated() ) {//没有用户登录
+                    console.log(' user is not logged in');
 
-          } else {
-            console.log(' user is not logged in')
-            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                    if(!authService.isNonAuthorization($location.path())) {//只有登录用户才可能有权限查看的页面
+                        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                        event.preventDefault();
 
-          }
-        }*/
+                    } else {//未登录时，游客能够访问非授权页面
+                        //do nothing
+                        console.log('but can visit ');
+                    }
 
-      });
+                } else {//有用户登录
+                    if (!authService.isAuthorized($location.path())) {//当前页面没授权,对用户而言所有页面都必须设置权限
+                        console.log(' user is not allowed');
+                        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                        event.preventDefault();
 
-    //视图解析完成
-    $rootScope.$on('$stateChangeSuccess',
-      function (event, toState, toParams, fromState, fromParams) {
-      });
+                    }
+                }
+            });
 
-  });
+        //视图解析完成
+        $rootScope.$on('$stateChangeSuccess',
+            function (event, toState, toParams, fromState, fromParams) {
+            });
+    }
+);

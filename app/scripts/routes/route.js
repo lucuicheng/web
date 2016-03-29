@@ -1,26 +1,50 @@
 'use strict';
 
 var appRoute = angular.module('appRoute',
-  [
-    'ngRoute',
-    'ui.router',
-    'blankModuleRoute',
-    'loginModuleRoute'
-  ]);
+    [
+        'ngRoute',
+        'ui.router',
+        'blankModuleRoute'
+    ]);
 
 appRoute.config(
-  function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
-    $stateProvider
-      .state('app', {
-        url: '/',
-        templateUrl: 'modules/blank/views/main.html',
-        controller: 'blankMainCtrl',
-      })
-      .state('not-found', {
-        url: '/not-found.htm',
-        templateUrl: '404.html',
-        controller: 'notFoundCtrl',
-      });
-    $urlRouterProvider
-      .otherwise("/not-found.htm");
-  });
+    function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
+        $stateProvider
+            .state('app', {
+                url: '/',
+                templateUrl: 'modules/common/views/index.html',
+                controller: 'applicationController',
+                resolve: {
+                    permission: function (authService, $location) {
+                        return authService.permissionCheck($location.path());
+                    }
+                }
+            })
+            .state('login', {
+                url: '/login.htm?token',
+                templateUrl: 'modules/common/views/login.html',
+                controller: 'applicationController',
+                resolve: {
+                    permission: function (authService, $location) {
+                        return authService.permissionCheck($location.path());
+                    }
+                }
+            })
+            .state('register', {
+                url: '/register.htm?token',
+                templateUrl: 'modules/common/views/register.html',
+                controller: 'applicationController',
+                resolve: {
+                    permission: function (authService, $location) {
+                        return authService.permissionCheck($location.path());
+                    }
+                }
+            })
+            .state('not-found', {
+                url: '/not-found.htm',
+                templateUrl: '404.html',
+                controller: 'notFoundCtrl',
+            });
+        $urlRouterProvider
+            .otherwise("/not-found.htm");
+    });
