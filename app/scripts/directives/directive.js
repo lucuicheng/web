@@ -316,8 +316,7 @@ appDirective.directive('loadingLabel', [function () {
                         canMove = false;
                     } else {
                         canMove = true;
-                    }
-                    ;
+                    };
                 });
 
                 if (!canMove) {

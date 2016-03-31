@@ -14,8 +14,28 @@ html,body {
     margin-left: 0px;
 }
 /*----------------------------------------*/
-
-
+.loading-label:before {
+    content:'加载中';
+    font-size:1.6rem;
+    color:rgba(51, 51, 51, 1);
+}
+.loading-label{
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    counter-increment: loading-label;
+    position: absolute;
+    top: -2.5rem
+}
+.table {
+    display: table;
+}
+.table > li {
+    display: table-row;
+}
+.table > li > div {
+    display: table-cell;
+}
 /*----------------------------------------*/
 
 

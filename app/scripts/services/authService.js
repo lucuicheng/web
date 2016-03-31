@@ -42,7 +42,7 @@ authService.factory('authService',
                 '/login.htm',
                 '/not-found.htm',
                 '/blank/basic.htm',
-                '/blank/list.htm'
+                '/blank/list2.htm'
             ];
 
             if (!angular.isArray(nonAuthorizedResources)) {//可直接查看的页面资源列表

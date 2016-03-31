@@ -12,7 +12,7 @@ teacherService.factory('teacherService', function($http, commonService) {
     },
 
     queryListSyncBy : function(params) {
-      var url = commonService.getBaseParams().url + 'datas/audio/workset/list';
+      var url = commonService.getBaseParams().url + 'datas/teacher/list.json';
       return commonService.handleSyncData(url, params);
     },
 

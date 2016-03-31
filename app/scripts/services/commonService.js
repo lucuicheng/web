@@ -14,7 +14,7 @@ commonModuleService.factory('commonService',
 
             getBaseParams: function () {
                 return {
-                    'url': 'http://192.168.0.121:9000/',
+                    'url': 'http://192.168.0.122:9000/',
                     /*'url' : 'http://www.dfzhgx.com/',*/
                     'project': 'owWeb'
                 };

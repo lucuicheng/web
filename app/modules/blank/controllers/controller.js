@@ -28,11 +28,17 @@ blankModuleController.controller(
         teacherService.queryListBy(
             $scope.formData
         ).success(function (data, status, header, config) {
-            $scope.result = data;
+            $scope.list = data;
 
         }).error(function (data, status, header, config) {
 
         });
+
+        //对应下拉刷新操作，必须有这个方法
+        $scope.refresh = function() {
+            return teacherService.queryListSyncBy($scope.formData);
+        };
+
         console.log('done');
     }
 );
