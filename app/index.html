@@ -1,42 +1,43 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <base href="/">
-  <title>app</title>
-  <meta name="description" content="">
-  <!--<meta name="viewport" content="width=device-width">-->
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no">
-  <meta http-equiv="Access-Control-Allow-Origin" content="*">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <!-- build:css(.) styles/vendor.css -->
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-  <!-- endbower -->
-  <!-- endbuild -->
-  <!-- build:css(.tmp) styles/main.css -->
-  <!-- custom:css -->
-  <link rel="stylesheet" href="styles/animations.css"/>
-  <link rel="stylesheet" href="styles/main.css"/>
-  <!-- endcustom -->
-  <!-- endbuild -->
+    <meta charset="utf-8">
+    <base href="/">
+    <title>app</title>
+    <meta name="description" content="">
+    <!--<meta name="viewport" content="width=device-width">-->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <!-- custom:css -->
+<link rel="stylesheet" href="styles/animations.css" />
+<link rel="stylesheet" href="styles/main.css" />
+            <!--endcustom -->
+    <!-- endbuild -->
 </head>
 <body ng-app="owWebApp" ng-controller="applicationController">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-  your browser</a> to improve your experience.</p>
+    your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ng-if="loading">
+<!--<div ng-if="loading">
     这里是进度条
-</div>
-<!-- ng-animate="'view'" -->
-<div class="main" auth-info ui-view="">
+</div>-->
+<!-- ng-animate="'view'" auth-info  -->
+<div class="main" ui-view="" auth-info>
 </div>
 
 <!-- build:js(.) scripts/vendor.js -->
@@ -58,21 +59,38 @@
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <!-- custom:js -->
 <script src="scripts/app.js"></script>
-<script src="scripts/services/service.js"></script>
-<script src="scripts/routes/route.js"></script>
 <script src="scripts/common/jsAddress.js"></script>
 <script src="scripts/common/main.js"></script>
-<script src="scripts/controllers/commonController.js"></script>
 <script src="scripts/controllers/controller.js"></script>
 <script src="scripts/directives/directive.js"></script>
 <script src="scripts/filters/filter.js"></script>
 <script src="scripts/interceptor/interceptor.js"></script>
+<script src="scripts/routes/route.js"></script>
 <script src="scripts/services/authService.js"></script>
-<script src="scripts/services/commonService.js"></script>
+<script src="scripts/services/service.js"></script>
 <script src="scripts/services/teacherService.js"></script>
-<script src="modules/blank/controllers/controller.js"></script>
+<script src="modules/api/controller.js"></script>
+<script src="modules/api/route.js"></script>
+<script src="modules/api/service.js"></script>
+<script src="modules/blank/controller.js"></script>
 <script src="modules/blank/route.js"></script>
-<!-- endcustom -->
+<script src="modules/blank/service.js"></script>
+<script src="modules/blog/controller.js"></script>
+<script src="modules/blog/route.js"></script>
+<script src="modules/blog/service.js"></script>
+<script src="modules/demo/controller.js"></script>
+<script src="modules/demo/route.js"></script>
+<script src="modules/demo/service.js"></script>
+<script src="modules/index/controller.js"></script>
+<script src="modules/index/route.js"></script>
+<script src="modules/index/service.js"></script>
+<script src="modules/project/controller.js"></script>
+<script src="modules/project/route.js"></script>
+<script src="modules/project/service.js"></script>
+<script src="modules/resume/controller.js"></script>
+<script src="modules/resume/route.js"></script>
+<script src="modules/resume/service.js"></script>
+<!--endcustom -->
 <!-- endbuild -->
 </body>
 </html>

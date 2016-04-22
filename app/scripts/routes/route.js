@@ -1,17 +1,24 @@
 'use strict';
 
-var appRoute = angular.module('appRoute',
-    [
-        'ngRoute',
-        'ui.router',
-        'blankModuleRoute'
-    ]);
+var routes = [
+    //auto inject from module
+    'blankModuleRoute',
+    'indexModuleRoute',
+	//end inject
+]
+
+var appRoute = angular.module('appRoute', routes);
 
 appRoute.config(
     function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
         $stateProvider
-            .state('app', {
+            .state('inde', {
                 url: '/',
+                templateUrl: 'modules/index/views/main.html',
+                controller: 'indexMainCtrl',
+            })
+            .state('app', {
+                url: '/app',
                 templateUrl: 'modules/common/views/index.html',
                 controller: 'applicationController',
                 resolve: {
@@ -46,5 +53,5 @@ appRoute.config(
                 controller: 'notFoundCtrl',
             });
         $urlRouterProvider
-            .otherwise("/not-found.htm");
+            .otherwise("/");
     });
