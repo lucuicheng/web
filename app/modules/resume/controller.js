@@ -1,9 +1,9 @@
 'use strict';
 
-var blankModuleController = angular.module('blankModuleController', []);
+var resumeModuleController = angular.module('resumeModuleController', []);
 
-blankModuleController.controller(
-    'blankMainCtrl',
+resumeModuleController.controller(
+    'resumeMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 
@@ -11,17 +11,25 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
-    'blankListCtrl',
+resumeModuleController.controller(
+    'resumeListCtrl',
     function ($scope, $stateParams) {
-        $scope.formData = {}
+        $scope.formData = {};
 
+    }
+);
+
+resumeModuleController.controller(
+    'resumePageCtrl',
+    function ($scope, $stateParams, $rootScope) {
+        $scope.formData = {};
+        console.log($rootScope.pageClass);
         console.log('done');
     }
 );
 
-blankModuleController.controller(
-    'blankDetailCtrl',
+resumeModuleController.controller(
+    'resumeDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 

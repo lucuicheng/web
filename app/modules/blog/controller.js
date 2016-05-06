@@ -1,9 +1,9 @@
 'use strict';
 
-var blankModuleController = angular.module('blankModuleController', []);
+var blogModuleController = angular.module('blogModuleController', []);
 
-blankModuleController.controller(
-    'blankMainCtrl',
+blogModuleController.controller(
+    'blogMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 
@@ -11,8 +11,8 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
-    'blankListCtrl',
+blogModuleController.controller(
+    'blogListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 
@@ -20,10 +20,11 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
-    'blankDetailCtrl',
+blogModuleController.controller(
+    'blogDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
+        $scope.code = "";
 
         console.log('done');
     }

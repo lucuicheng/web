@@ -1,22 +1,22 @@
 'use strict';
 
-var blankModuleRoute = angular.module('blankModuleRoute', []);
+var projectModuleRoute = angular.module('projectModuleRoute', []);
 
-blankModuleRoute.config(function ($stateProvider) {
+projectModuleRoute.config(function ($stateProvider) {
     $stateProvider
-        .state('blank-main', {
-            url: '/blank/basic.htm?type&id',
-            templateUrl: 'modules/blank/views/main.html',
-            controller: 'blankMainCtrl',
+        .state('project-main', {
+            url: '/project/index.htm',
+            templateUrl: 'modules/project/views/main.html',
+            controller: 'projectMainCtrl',
         })
-        .state('blank-list', {
-            url: '/blank/list.htm?type&id',
-            templateUrl: 'modules/blank/views/list.html',
-            controller: 'blankListCtrl',
+        .state('project-list', {
+            url: '/project/list.htm?type&id',
+            templateUrl: 'modules/project/views/list.html',
+            controller: 'projectListCtrl',
         })
-        .state('blank-detail', {
-            url: '/blank/detail.htm?type&id',
-            templateUrl: 'modules/blank/views/detail.html',
-            controller: 'blankDetailCtrl',
+        .state('project-detail', {
+            url: '/project/detail.htm?type&id',
+            templateUrl: 'modules/project/views/detail.html',
+            controller: 'projectDetailCtrl',
         });
 });

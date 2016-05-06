@@ -24,6 +24,280 @@ appDirective.directive('ngTouchend', [function () {
     };
 }]);
 
+//触摸指令 判断方向 所有
+appDirective.directive('ngTouchend', [function () {
+    return function (scope, element, attr) {
+        element.on('touchend', function (event) {
+            scope.$apply(function () {
+                scope.$eval(attr.ngTouchend);
+            });
+        });
+    };
+}]);
+
+//触摸指令-长按
+appDirective.directive('ngTouchLong', ['$timeout', function($timeout) {
+    return function($scope, element, attr) {
+
+        //禁用弹出菜单,element需要转换成dom对象
+        element.get(0).addEventListener( 'contextmenu',
+            function (event) {
+                event.preventDefault();
+            }, false
+        );
+
+        //开始按住
+        element.on('touchstart', function(event) {
+
+            $scope.timePromise = $timeout(function(){//开始计时，
+                $scope.$apply(function() {//长按调用的方法,
+                    $scope.$eval(attr.ngTouchLong);
+                });
+
+            }, 800);
+
+        });
+
+        //离开取消长按效果
+        element.on('touchend', function(event) {
+            $timeout.cancel($scope.timePromise);
+        });
+    };
+}]);
+
+//滑动指令-向上
+appDirective.directive('swipeUp', [function() {
+    return function($scope, element, attr) {
+        var startX, startY, endX, endY, moveX, moveY;
+
+        //禁用弹出菜单,element需要转换成dom对象
+        element.get(0).addEventListener( 'contextmenu',
+            function (event) {
+                event.preventDefault();
+            }, false
+        );
+
+        function startStopScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            startX = touch.pageX;
+            startY = touch.pageY;
+
+            //阻值页面行为
+            //touchEvent.preventDefault();
+        };
+        element.get(0).addEventListener('touchstart', startStopScrolling, false);
+
+        function moveScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            moveX = touch.pageX;
+            moveY = touch.pageY;
+
+            var positionX = (parseInt(moveX) - parseInt(startX));
+            var positionY = (parseInt(moveY) - parseInt(startY));
+
+            if ( Math.abs(positionY) > Math.abs(positionX) && positionY < 0 ) {
+                $scope.$apply(function() {
+                    $scope.$eval(attr.swipeUp);
+                });
+            }
+
+        };
+        element.get(0).addEventListener('touchmove', moveScrolling, false);
+    };
+}]);
+
+//滑动指令-向左
+appDirective.directive('swipeLeft', [function() {
+    return function($scope, element, attr) {
+        var startX, startY, endX, endY, moveX, moveY;
+
+        //禁用弹出菜单,element需要转换成dom对象
+        element.get(0).addEventListener( 'contextmenu',
+            function (event) {
+                event.preventDefault();
+            }, false
+        );
+
+        function startStopScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            startX = touch.pageX;
+            startY = touch.pageY;
+
+            //阻值页面行为
+            //touchEvent.preventDefault();
+        };
+        element.get(0).addEventListener('touchstart', startStopScrolling, false);
+
+        function moveScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            moveX = touch.pageX;
+            moveY = touch.pageY;
+
+            var positionX = (parseInt(moveX) - parseInt(startX));
+            var positionY = (parseInt(moveY) - parseInt(startY));
+
+            if ( Math.abs(positionX) > Math.abs(positionY) && positionX < 0 ) {
+                $scope.$apply(function() {
+                    $scope.$eval(attr.swipeLeft);
+                });
+            }
+
+        };
+        element.get(0).addEventListener('touchmove', moveScrolling, false);
+    };
+}]);
+
+//滑动指令-向下
+appDirective.directive('swipeDown', [function() {
+    return function($scope, element, attr) {
+        var startX, startY, endX, endY, moveX, moveY;
+
+        //禁用弹出菜单,element需要转换成dom对象
+        element.get(0).addEventListener( 'contextmenu',
+            function (event) {
+                event.preventDefault();
+            }, false
+        );
+
+        function startStopScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            startX = touch.pageX;
+            startY = touch.pageY;
+
+            //阻值页面行为
+            //touchEvent.preventDefault();
+        };
+        element.get(0).addEventListener('touchstart', startStopScrolling, false);
+
+        function moveScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            moveX = touch.pageX;
+            moveY = touch.pageY;
+
+            var positionX = (parseInt(moveX) - parseInt(startX));
+            var positionY = (parseInt(moveY) - parseInt(startY));
+
+            if ( Math.abs(positionY) > Math.abs(positionX) && positionY > 0) {
+                $scope.$apply(function() {
+                    $scope.$eval(attr.swipeDown);
+                });
+            }
+
+        };
+        element.get(0).addEventListener('touchmove', moveScrolling, false);
+    };
+}]);
+
+//滑动指令-向右
+appDirective.directive('swipeRight', [function() {
+    return function($scope, element, attr) {
+        var startX, startY, endX, endY, moveX, moveY;
+
+        //禁用弹出菜单,element需要转换成dom对象
+        element.get(0).addEventListener( 'contextmenu',
+            function (event) {
+                event.preventDefault();
+            }, false
+        );
+
+        function startStopScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            startX = touch.pageX;
+            startY = touch.pageY;
+
+            //阻值页面行为
+            //touchEvent.preventDefault();
+        };
+        element.get(0).addEventListener('touchstart', startStopScrolling, false);
+
+        function moveScrolling(touchEvent) {
+            var touch = touchEvent.touches[0];
+            moveX = touch.pageX;
+            moveY = touch.pageY;
+
+            var positionX = (parseInt(moveX) - parseInt(startX));
+            var positionY = (parseInt(moveY) - parseInt(startY));
+
+            if ( Math.abs(positionX) > Math.abs(positionY) && positionX > 0 ) {
+                $scope.$apply(function() {
+                    $scope.$eval(attr.swipeRight);
+                });
+            }
+
+        };
+        element.get(0).addEventListener('touchmove', moveScrolling, false);
+    };
+}]);
+
+//翻页指令
+appDirective.directive('pageChange', function($location, $state, $rootScope) {
+    return {
+        restrict: "EA",
+        controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
+            //$rootScope.pageClass = 'resume-page-up';
+        }],
+        link: function ($scope, element, attr) {
+            var startX, startY, endX, endY, moveX, moveY;
+
+            //禁用弹出菜单,element需要转换成dom对象
+            element.get(0).addEventListener( 'contextmenu',
+                function (event) {
+                    event.preventDefault();
+                }, false
+            );
+
+            function start(touchEvent) {
+                var touch = touchEvent.touches[0];
+                startX = touch.pageX;
+                startY = touch.pageY;
+
+                //阻值页面行为
+                touchEvent.preventDefault();
+            };
+            element.get(0).addEventListener('touchstart', start, false);
+
+            var path = $location.path();
+            var pageCtrl =  element.parents("body").find("ul.page");
+            var currentPage = pageCtrl.attr('current-page');
+            var totalPage = pageCtrl.attr('total-page');
+            var pageClass = 'resume-page-up';
+
+            function move(touchEvent) {
+                var touch = touchEvent.changedTouches[0];
+                moveX = touch.pageX;
+                moveY = touch.pageY;
+
+                var positionX = (parseInt(moveX) - parseInt(startX));
+                var positionY = (parseInt(moveY) - parseInt(startY));
+
+                //TODO 限制设置为长宽的百分比
+                if ( Math.abs(positionY) > Math.abs(positionX) && positionY < 0 && Math.abs(positionY) >= 100) {//向上
+                    currentPage ++;
+                    if(currentPage > totalPage) {//末页
+                        currentPage = totalPage;
+                        return;
+                    }
+                    pageClass = 'resume-page-up';
+                }
+                else if ( Math.abs(positionY) > Math.abs(positionX) && positionY > 0 && Math.abs(positionY) >= 100) {//向下
+                    currentPage --;
+                    if(currentPage < 1 ) {//首页
+                        currentPage = 1;
+                        return;
+                    }
+                    pageClass = 'resume-page-down';
+                }
+                $rootScope.pageClass = pageClass;
+                console.log('-----' + $rootScope.pageClass);
+
+                pageCtrl.attr('current-page', currentPage);
+                pageCtrl.find('li:eq(' + (parseInt(currentPage) - 1) + ')').trigger('click');
+            };
+            element.get(0).addEventListener('touchend', move, false);
+        }
+    }
+});
+
 /**
  * 认证指令，处理成功|失败的提示信息
  */

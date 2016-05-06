@@ -1,12 +1,6 @@
-<div class="row">
-    <div class="col-md-12 col-sm-12">
-        <loading-label></loading-label>
-
-        <ul class="list-group data-list" style="transform: translateY(59px);">
-            <li class="list-group-item " ng-repeat="record in list">
-                <span>{{$index + 1}}</span>--{{record.name}}
-            </li>
-        </ul>
-    </div>
-</div>
-
+<ul class="page" current-page="1" total-page="3" >
+    <li ui-sref=".education">education</li>
+    <li ui-sref=".experience">experience</li>
+    <li ui-sref=".projects">projects</li>
+</ul>
+<div class="resume-page {{pageClass}}" ui-view="" page-change></div>

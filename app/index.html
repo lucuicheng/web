@@ -24,7 +24,24 @@
     <!-- custom:css -->
 <link rel="stylesheet" href="styles/animations.css" />
 <link rel="stylesheet" href="styles/main.css" />
-            <!--endcustom -->
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreDefault.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreDjango.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreEclipse.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreEmacs.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreFadeToGrey.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreMDUltra.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreMidnight.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shCoreRDark.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeDefault.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeDjango.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeEclipse.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeEmacs.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeFadeToGrey.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeMDUltra.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeMidnight.css" />
+<link rel="stylesheet" href="styles/syntaxhighlighter/shThemeRDark.css" />
+                <!--endcustom -->
     <!-- endbuild -->
 </head>
 <body ng-app="owWebApp" ng-controller="applicationController">
@@ -36,7 +53,7 @@
 <!--<div ng-if="loading">
     这里是进度条
 </div>-->
-<!-- ng-animate="'view'" auth-info  -->
+<!-- need auth-info, class + animate effect -->
 <div class="main" ui-view="" auth-info>
 </div>
 
@@ -61,6 +78,34 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/common/jsAddress.js"></script>
 <script src="scripts/common/main.js"></script>
+<script src="scripts/common/syntaxhighlighter/shAutoloader.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushAS3.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushAppleScript.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushBash.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushCSharp.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushColdFusion.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushCpp.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushCss.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushDelphi.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushDiff.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushErlang.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushGroovy.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushJScript.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushJava.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushJavaFX.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushPerl.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushPhp.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushPlain.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushPowerShell.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushPython.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushRuby.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushSass.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushScala.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushSql.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushVb.js"></script>
+<script src="scripts/common/syntaxhighlighter/shBrushXml.js"></script>
+<script src="scripts/common/syntaxhighlighter/shCore.js"></script>
+<script src="scripts/common/syntaxhighlighter/shLegacy.js"></script>
 <script src="scripts/controllers/controller.js"></script>
 <script src="scripts/directives/directive.js"></script>
 <script src="scripts/filters/filter.js"></script>
@@ -90,6 +135,9 @@
 <script src="modules/resume/controller.js"></script>
 <script src="modules/resume/route.js"></script>
 <script src="modules/resume/service.js"></script>
+<script src="modules/tools/controller.js"></script>
+<script src="modules/tools/route.js"></script>
+<script src="modules/tools/service.js"></script>
 <!--endcustom -->
 <!-- endbuild -->
 </body>

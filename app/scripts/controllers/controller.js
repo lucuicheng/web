@@ -4,7 +4,7 @@ var controllers = [
     //auto inject from module
     'blankModuleController',
     'indexModuleController',
-	//end inject
+	'resumeModuleController',	'blogModuleController',	'projectModuleController',	'demoModuleController',	'toolsModuleController',	//end inject
 ]
 
 var appController = angular.module('appController', controllers);

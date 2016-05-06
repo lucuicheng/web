@@ -1,8 +1,8 @@
 'use strict';
 
-var blankModuleService = angular.module('blankModuleService', []);
+var demoModuleService = angular.module('demoModuleService', []);
 
-blankModuleService.factory('blankService', function($http, commonService) {
+demoModuleService.factory('demoService', function($http, commonService) {
     var service = { // our factory definition
         //services
     };

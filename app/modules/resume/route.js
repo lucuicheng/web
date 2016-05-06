@@ -1,22 +1,38 @@
 'use strict';
 
-var blankModuleRoute = angular.module('blankModuleRoute', []);
+var resumeModuleRoute = angular.module('resumeModuleRoute', []);
 
-blankModuleRoute.config(function ($stateProvider) {
+resumeModuleRoute.config(function ($stateProvider) {
     $stateProvider
-        .state('blank-main', {
-            url: '/blank/basic.htm?type&id',
-            templateUrl: 'modules/blank/views/main.html',
-            controller: 'blankMainCtrl',
+        .state('resume-main', {
+            url: '/resume/index.htm',
+            templateUrl: 'modules/resume/views/main.html',
+            controller: 'resumeMainCtrl',
         })
-        .state('blank-list', {
-            url: '/blank/list.htm?type&id',
-            templateUrl: 'modules/blank/views/list.html',
-            controller: 'blankListCtrl',
+        .state('resume-list', {
+            url: '/resume/list',
+            templateUrl: 'modules/resume/views/list.html',
+            controller: 'resumeListCtrl',
         })
-        .state('blank-detail', {
-            url: '/blank/detail.htm?type&id',
-            templateUrl: 'modules/blank/views/detail.html',
-            controller: 'blankDetailCtrl',
+        .state('resume-detail', {
+            url: '/resume/detail.htm?type&id',
+            templateUrl: 'modules/resume/views/detail.html',
+            controller: 'resumeDetailCtrl',
+        })
+        /*嵌套后可以使用另外一种切换视图的效果*/
+        .state('resume-list.education', {
+            url:'/education.htm',
+            templateUrl: 'modules/resume/views/pageEducation.html',
+            controller: 'resumePageCtrl',
+        })
+        .state('resume-list.experience', {
+            url:'/experience.htm',
+            templateUrl: 'modules/resume/views/pageExperience.html',
+            controller: 'resumePageCtrl',
+        })
+        .state('resume-list.projects', {
+            url:'/projects.htm',
+            templateUrl: 'modules/resume/views/pageProjects.html',
+            controller: 'resumePageCtrl',
         });
 });

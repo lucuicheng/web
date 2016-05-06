@@ -4,7 +4,7 @@ var routes = [
     //auto inject from module
     'blankModuleRoute',
     'indexModuleRoute',
-	//end inject
+	'resumeModuleRoute',	'blogModuleRoute',	'projectModuleRoute',	'demoModuleRoute',	'toolsModuleRoute',	//end inject
 ]
 
 var appRoute = angular.module('appRoute', routes);

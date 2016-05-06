@@ -1,22 +1,22 @@
 'use strict';
 
-var blankModuleRoute = angular.module('blankModuleRoute', []);
+var demoModuleRoute = angular.module('demoModuleRoute', []);
 
-blankModuleRoute.config(function ($stateProvider) {
+demoModuleRoute.config(function ($stateProvider) {
     $stateProvider
-        .state('blank-main', {
-            url: '/blank/basic.htm?type&id',
-            templateUrl: 'modules/blank/views/main.html',
-            controller: 'blankMainCtrl',
+        .state('demo-main', {
+            url: '/demo/index.htm',
+            templateUrl: 'modules/demo/views/main.html',
+            controller: 'demoMainCtrl',
         })
-        .state('blank-list', {
-            url: '/blank/list.htm?type&id',
-            templateUrl: 'modules/blank/views/list.html',
-            controller: 'blankListCtrl',
+        .state('demo-list', {
+            url: '/demo/list.htm?type&id',
+            templateUrl: 'modules/demo/views/list.html',
+            controller: 'demoListCtrl',
         })
-        .state('blank-detail', {
-            url: '/blank/detail.htm?type&id',
-            templateUrl: 'modules/blank/views/detail.html',
-            controller: 'blankDetailCtrl',
+        .state('demo-detail', {
+            url: '/demo/detail.htm?type&id',
+            templateUrl: 'modules/demo/views/detail.html',
+            controller: 'demoDetailCtrl',
         });
 });

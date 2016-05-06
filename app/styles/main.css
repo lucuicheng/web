@@ -9,7 +9,7 @@ html, body {
     padding: 0px;
 }
 
-/*----------------------------------------*/
+/*重写bootstrap----------------------------------------*/
 .row {
     margin-right: 0px;
     margin-left: 0px;
@@ -21,7 +21,47 @@ html, body {
     display: inline-block;
     margin: 5px 3px;
 }
-/*----------------------------------------*/
+.panel {
+    border-radius: 0px;
+}
+.panel-heading {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.panel-body {
+    min-height: 170px;
+}
+.panel-body.md {
+    min-height: 120px;
+}
+.panel-body.sm {
+    min-height: 0px;
+    padding: 10px 5px;
+}
+.panel-body.vs {
+    min-height: 0px;
+    padding: 0px 0px;
+}
+.panel-body.xs {
+    min-height: 0px;
+    padding: 5px 5px;
+}
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.thumbnail.line {
+    border-radius: 0px;
+}
+.thumbnail.line:hover, .thumbnail.line:focus, .thumbnail.line.active {
+    border-color: darkgray;
+}
+/*完全自定义----------------------------------------*/
 .loading-label:before {
     content: '加载中';
     font-size: 1.6rem;
@@ -36,22 +76,219 @@ html, body {
     position: absolute;
     top: -2.5rem
 }
-
-.table {
-    display: table;
+.page {
+    display: none;
+}
+.page.normal {
+    display: inline-block;
+}
+.blur {
+    -webkit-filter: blur(2px); /* Chrome, Opera */
+    -moz-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=2, MakeShadow=false); /* IE6~IE9 */
+    background: inherit;
+    min-height: 75px;
+    padding: 0px 15px;
+    margin-top: 100px;
+    background-size:cover;
+    background-position: 100% 100%;
+}
+/*blog----------------------------------------*/
+.blog-body .panel {
+    padding: 10px 5px;
+}
+.blog-body {
+    min-height: 50%;padding-top: 20px
+}
+.blog-body .blog {
+    min-height: 175px;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:100% 100%;
+    overflow: hidden;
+    padding: 0px;
 }
 
-.table > li {
-    display: table-row;
+.blog-body .blog .desc{
+    min-height: 65px;
+    margin-top: -65px;
+    padding: 2px 15px;
+    position: relative;
+    line-height: 20px;
+    font-size: 16px;
+    color: #DEDEDE;
 }
 
-.table > li > div {
-    display: table-cell;
+.blog-body .article {
+    line-height:25px;
+    word-break:normal;
+    white-space:normal;
+    text-align: left;
+}
+.blog-body .article img {
+    margin: 5px 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.blog-body .desc {
+    padding: 10px 5px 0px;
+    max-height: 130px;
+    line-height:25px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+.blog-body .panel-footer {
+    background-color: #fff;
+}
+/*resume----------------------------------------*/
+.resume-page, .resume-page-up, .resume-page-down {
+    height: 100%;
+    width: 100%;
+    overflow-y:hidden;
+    /*opacity: 0;*/
+}
+.resume-body {
+    min-height: 30%;
+    background-color: #fff;
+    margin-top: 20px;
+}
+.resume-body p {
+    margin: 25px 5px;
+}
+.resume-body li {
+    min-height: 200px;
+}
+.resume-job {
+    min-height: 20%;
+}
+.resume-job > div {
+    padding-top: 15px;
+}
+.resume-job > div > span {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid darkgray;
+    border-radius: 50px;
+    font-size: 12px;
+    padding-top: 25px;
 }
 
-/*----------------------------------------*/
+.resume-contact {
+    min-height: 60%;
+}
+.resume-contact > div > span {
+    display: inline-block;
+    font-size: 15px;
+    padding-top: 25px;
+}
+.resume-contact .fa-phone {
+    color: #6FDB6F;
+}
+.resume-contact .fa-envelope {
+    color: #548AC7;
+}
+.resume-contact .fa-home {
+    color: grey;
+}
+/*project----------------------------------------*/
+.project-head {
+    min-height: 160px;
+    background-image: url('/images/bg5.png');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.project-head > div >span {
+    display: inline-block;
+    padding: 30px 10px;
+    border: 1px solid #79A2AF;
+    width: 200px;
+    height: 80px;
+    margin-top: 39px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 17px;
+}
+.project-search {
+    min-height: 110px;
+    background-image: url('/images/bg5.png');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.project-search .input-group {
+    margin-top: 40px;
+}
+.project-body {
+    min-height: 30%;
+    margin-top: 20px;
+}
+.project-body p {
+    margin: 15px 5px;
+}
+.project-body li {
+    min-height: 210px;
+}
+.project-body img {
+    width: 100%;
+    max-height: 280px;
+    overflow: hidden;
+}
+/*demo----------------------------------------*/
+.demo-head {
+    max-height: 100px;
+    background-image: url('/images/bg5.png');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.demo-head > div > span {
+    display: inline-block;
+    padding: 5px 10px;
+    width: 100%;
+    color: #FFFFFF;
+}
+.demo-body {
+    min-height: 40%;
+    padding-top: 20px
+    /*background-color: #fff;*/
+}
+.demo-body p {
+    margin: 25px 5px;
+}
+.demo-body li:first-child {
+    min-height: 210px;
+}
+.demo-body img {
+    width: 100%;
+    max-height: 384px;
+    overflow: hidden;
+}
+.demo-body .panel {
+    box-shadow: 5px 5px 15px #C3C3C3;
+}
+.demo-body .panel-body {
+    min-height: 151px;
+}
+.demo-body .panel-heading {
+    background-color: #FFFFFF;
+}
+.demo-body .panel-footer {
+    background-color: #FFFFFF;
+}
+/*tools----------------------------------------*/
 
-/*----------------------------------------*/
+/*一般公用----------------------------------------*/
+.index .panel {
+    padding: 0px;
+}
+
 .float-left {
     float: left
 }
@@ -78,6 +315,11 @@ html, body {
     padding-bottom: 0px
 }
 
+.no-border {
+    border: 0px solid #fff;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
 .padding-side-5 {
     padding: 0px 5px;
 }
@@ -129,4 +371,13 @@ html, body {
 
 .border-radius-bottom {
     border-radius: 0px 0px 5px 5px
+}
+.table {
+    display: table;
+}
+.table > li {
+    display: table-row;
+}
+.table > li > div {
+    display: table-cell;
 }

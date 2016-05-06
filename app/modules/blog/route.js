@@ -1,22 +1,22 @@
 'use strict';
 
-var blankModuleRoute = angular.module('blankModuleRoute', []);
+var blogModuleRoute = angular.module('blogModuleRoute', []);
 
-blankModuleRoute.config(function ($stateProvider) {
+blogModuleRoute.config(function ($stateProvider) {
     $stateProvider
-        .state('blank-main', {
-            url: '/blank/basic.htm?type&id',
-            templateUrl: 'modules/blank/views/main.html',
-            controller: 'blankMainCtrl',
+        .state('blog-main', {
+            url: '/blog/index.htm?type&id',
+            templateUrl: 'modules/blog/views/main.html',
+            controller: 'blogMainCtrl',
         })
-        .state('blank-list', {
-            url: '/blank/list.htm?type&id',
-            templateUrl: 'modules/blank/views/list.html',
-            controller: 'blankListCtrl',
+        .state('blog-list', {
+            url: '/blog/list.htm?type&id',
+            templateUrl: 'modules/blog/views/list.html',
+            controller: 'blogListCtrl',
         })
-        .state('blank-detail', {
-            url: '/blank/detail.htm?type&id',
-            templateUrl: 'modules/blank/views/detail.html',
-            controller: 'blankDetailCtrl',
+        .state('blog-detail', {
+            url: '/blog/detail.htm?type&id',
+            templateUrl: 'modules/blog/views/detail.html',
+            controller: 'blogDetailCtrl',
         });
 });

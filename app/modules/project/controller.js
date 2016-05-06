@@ -1,9 +1,9 @@
 'use strict';
 
-var blankModuleController = angular.module('blankModuleController', []);
+var projectModuleController = angular.module('projectModuleController', []);
 
-blankModuleController.controller(
-    'blankMainCtrl',
+projectModuleController.controller(
+    'projectMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 
@@ -11,8 +11,8 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
-    'blankListCtrl',
+projectModuleController.controller(
+    'projectListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 
@@ -20,8 +20,8 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
-    'blankDetailCtrl',
+projectModuleController.controller(
+    'projectDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 

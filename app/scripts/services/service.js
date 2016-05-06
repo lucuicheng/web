@@ -6,8 +6,7 @@ var services = [
     'teacherService',
     //auto inject from module
     'blankModuleService',
-    'indexModuleService',
-	//end inject
+    'indexModuleService',	'resumeModuleService',	'blogModuleService',	'projectModuleService',	'demoModuleService',	'toolsModuleService',	//end inject
 ]
 
 var appService = angular.module('appService', services);
