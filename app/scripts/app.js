@@ -1,6 +1,6 @@
 'use strict';
 
-var webApp = angular.module('owWebApp', ['ngAnimate', 'ngCookies',
+var webApp = angular.module('webApp', ['ngAnimate', 'ngCookies',
     'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router',
     'ui.bootstrap',
 

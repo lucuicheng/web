@@ -36,21 +36,21 @@ appDirective.directive('ngTouchend', [function () {
 }]);
 
 //触摸指令-长按
-appDirective.directive('ngTouchLong', ['$timeout', function($timeout) {
-    return function($scope, element, attr) {
+appDirective.directive('ngTouchLong', ['$timeout', function ($timeout) {
+    return function ($scope, element, attr) {
 
         //禁用弹出菜单,element需要转换成dom对象
-        element.get(0).addEventListener( 'contextmenu',
+        element.get(0).addEventListener('contextmenu',
             function (event) {
                 event.preventDefault();
             }, false
         );
 
         //开始按住
-        element.on('touchstart', function(event) {
+        element.on('touchstart', function (event) {
 
-            $scope.timePromise = $timeout(function(){//开始计时，
-                $scope.$apply(function() {//长按调用的方法,
+            $scope.timePromise = $timeout(function () {//开始计时，
+                $scope.$apply(function () {//长按调用的方法,
                     $scope.$eval(attr.ngTouchLong);
                 });
 
@@ -59,19 +59,19 @@ appDirective.directive('ngTouchLong', ['$timeout', function($timeout) {
         });
 
         //离开取消长按效果
-        element.on('touchend', function(event) {
+        element.on('touchend', function (event) {
             $timeout.cancel($scope.timePromise);
         });
     };
 }]);
 
 //滑动指令-向上
-appDirective.directive('swipeUp', [function() {
-    return function($scope, element, attr) {
+appDirective.directive('swipeUp', [function () {
+    return function ($scope, element, attr) {
         var startX, startY, endX, endY, moveX, moveY;
 
         //禁用弹出菜单,element需要转换成dom对象
-        element.get(0).addEventListener( 'contextmenu',
+        element.get(0).addEventListener('contextmenu',
             function (event) {
                 event.preventDefault();
             }, false
@@ -95,8 +95,8 @@ appDirective.directive('swipeUp', [function() {
             var positionX = (parseInt(moveX) - parseInt(startX));
             var positionY = (parseInt(moveY) - parseInt(startY));
 
-            if ( Math.abs(positionY) > Math.abs(positionX) && positionY < 0 ) {
-                $scope.$apply(function() {
+            if (Math.abs(positionY) > Math.abs(positionX) && positionY < 0) {
+                $scope.$apply(function () {
                     $scope.$eval(attr.swipeUp);
                 });
             }
@@ -107,12 +107,12 @@ appDirective.directive('swipeUp', [function() {
 }]);
 
 //滑动指令-向左
-appDirective.directive('swipeLeft', [function() {
-    return function($scope, element, attr) {
+appDirective.directive('swipeLeft', [function () {
+    return function ($scope, element, attr) {
         var startX, startY, endX, endY, moveX, moveY;
 
         //禁用弹出菜单,element需要转换成dom对象
-        element.get(0).addEventListener( 'contextmenu',
+        element.get(0).addEventListener('contextmenu',
             function (event) {
                 event.preventDefault();
             }, false
@@ -136,8 +136,8 @@ appDirective.directive('swipeLeft', [function() {
             var positionX = (parseInt(moveX) - parseInt(startX));
             var positionY = (parseInt(moveY) - parseInt(startY));
 
-            if ( Math.abs(positionX) > Math.abs(positionY) && positionX < 0 ) {
-                $scope.$apply(function() {
+            if (Math.abs(positionX) > Math.abs(positionY) && positionX < 0) {
+                $scope.$apply(function () {
                     $scope.$eval(attr.swipeLeft);
                 });
             }
@@ -148,12 +148,12 @@ appDirective.directive('swipeLeft', [function() {
 }]);
 
 //滑动指令-向下
-appDirective.directive('swipeDown', [function() {
-    return function($scope, element, attr) {
+appDirective.directive('swipeDown', [function () {
+    return function ($scope, element, attr) {
         var startX, startY, endX, endY, moveX, moveY;
 
         //禁用弹出菜单,element需要转换成dom对象
-        element.get(0).addEventListener( 'contextmenu',
+        element.get(0).addEventListener('contextmenu',
             function (event) {
                 event.preventDefault();
             }, false
@@ -177,8 +177,8 @@ appDirective.directive('swipeDown', [function() {
             var positionX = (parseInt(moveX) - parseInt(startX));
             var positionY = (parseInt(moveY) - parseInt(startY));
 
-            if ( Math.abs(positionY) > Math.abs(positionX) && positionY > 0) {
-                $scope.$apply(function() {
+            if (Math.abs(positionY) > Math.abs(positionX) && positionY > 0) {
+                $scope.$apply(function () {
                     $scope.$eval(attr.swipeDown);
                 });
             }
@@ -189,12 +189,12 @@ appDirective.directive('swipeDown', [function() {
 }]);
 
 //滑动指令-向右
-appDirective.directive('swipeRight', [function() {
-    return function($scope, element, attr) {
+appDirective.directive('swipeRight', [function () {
+    return function ($scope, element, attr) {
         var startX, startY, endX, endY, moveX, moveY;
 
         //禁用弹出菜单,element需要转换成dom对象
-        element.get(0).addEventListener( 'contextmenu',
+        element.get(0).addEventListener('contextmenu',
             function (event) {
                 event.preventDefault();
             }, false
@@ -218,8 +218,8 @@ appDirective.directive('swipeRight', [function() {
             var positionX = (parseInt(moveX) - parseInt(startX));
             var positionY = (parseInt(moveY) - parseInt(startY));
 
-            if ( Math.abs(positionX) > Math.abs(positionY) && positionX > 0 ) {
-                $scope.$apply(function() {
+            if (Math.abs(positionX) > Math.abs(positionY) && positionX > 0) {
+                $scope.$apply(function () {
                     $scope.$eval(attr.swipeRight);
                 });
             }
@@ -229,8 +229,10 @@ appDirective.directive('swipeRight', [function() {
     };
 }]);
 
-//翻页指令
-appDirective.directive('pageChange', function($location, $state, $rootScope) {
+/**
+ * 翻页指令
+ */
+appDirective.directive('pageChange', function ($location, $state, $rootScope) {
     return {
         restrict: "EA",
         controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
@@ -240,7 +242,7 @@ appDirective.directive('pageChange', function($location, $state, $rootScope) {
             var startX, startY, endX, endY, moveX, moveY;
 
             //禁用弹出菜单,element需要转换成dom对象
-            element.get(0).addEventListener( 'contextmenu',
+            element.get(0).addEventListener('contextmenu',
                 function (event) {
                     event.preventDefault();
                 }, false
@@ -257,7 +259,7 @@ appDirective.directive('pageChange', function($location, $state, $rootScope) {
             element.get(0).addEventListener('touchstart', start, false);
 
             var path = $location.path();
-            var pageCtrl =  element.parents("body").find("ul.page");
+            var pageCtrl = element.parents("body").find("ul.page");
             var currentPage = pageCtrl.attr('current-page');
             var totalPage = pageCtrl.attr('total-page');
             var pageClass = 'resume-page-up';
@@ -271,24 +273,24 @@ appDirective.directive('pageChange', function($location, $state, $rootScope) {
                 var positionY = (parseInt(moveY) - parseInt(startY));
 
                 //TODO 限制设置为长宽的百分比
-                if ( Math.abs(positionY) > Math.abs(positionX) && positionY < 0 && Math.abs(positionY) >= 100) {//向上
-                    currentPage ++;
-                    if(currentPage > totalPage) {//末页
+                if (Math.abs(positionY) > Math.abs(positionX) && positionY < 0 && Math.abs(positionY) >= 100) {//向上
+                    currentPage++;
+                    if (currentPage > totalPage) {//末页
                         currentPage = totalPage;
                         return;
                     }
                     pageClass = 'resume-page-up';
                 }
-                else if ( Math.abs(positionY) > Math.abs(positionX) && positionY > 0 && Math.abs(positionY) >= 100) {//向下
-                    currentPage --;
-                    if(currentPage < 1 ) {//首页
+                else if (Math.abs(positionY) > Math.abs(positionX) && positionY > 0 && Math.abs(positionY) >= 100) {//向下
+                    currentPage--;
+                    if (currentPage < 1) {//首页
                         currentPage = 1;
                         return;
                     }
                     pageClass = 'resume-page-down';
                 }
                 $rootScope.pageClass = pageClass;
-                console.log('-----' + $rootScope.pageClass);
+                //console.log('-----' + $rootScope.pageClass);
 
                 pageCtrl.attr('current-page', currentPage);
                 pageCtrl.find('li:eq(' + (parseInt(currentPage) - 1) + ')').trigger('click');
@@ -299,26 +301,172 @@ appDirective.directive('pageChange', function($location, $state, $rootScope) {
 });
 
 /**
+ * 导航自动收缩
+ */
+appDirective.directive('navShrink', function ($location, $state, $compile, $rootScope) {
+    return {
+        restrict: "EA",
+        controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
+            //$rootScope.pageClass = 'resume-page-up';
+        }],
+        link: function ($scope, element, attr) {
+            var count = $('.nav-label').find('div').length;
+            if(count > 12) {//导航标题超过12个时隐藏
+                $('.glyphicon-menu-down').removeClass('hidden-sm hidden-md hidden-lg');
+            }
+
+            var height = 0
+            $("div[class^='row nav-']").each(function () {//复制一份导航内容所有
+                var _class = $(this).prop('class');
+                var _name = $(this).attr('name');
+                height += parseInt($(this).height());
+
+                if(_class.indexOf('nav-img') < 0) {
+                    var _content = '<div class="copy ' + _class + ' fixed" name="' + _name + '">' + $(this).html() + '</div>';
+                    _content = $compile(_content)($scope);//动态编译，html代码片段
+                    $(this).after(_content);
+                }
+            });
+
+            $('.jump-top').on('click', function() {
+                $('html, body').animate({scrollTop:0}, '500');
+            });
+
+            $(window).scroll(function () {//超过一定距离显示导航,及回到顶部按钮
+                if ($(window).scrollTop() >= height) {
+                    $('.copy').addClass('show');
+                    $('.jump-top').addClass('show');
+
+                } else {
+                    $('.copy').removeClass('show');
+                    $('.jump-top').removeClass('show');
+
+                };
+            });
+
+        }
+    }
+});
+
+/**
+ * 内容自动展开或者收缩
+ */
+appDirective.directive('expandOrContract', function ($location, $state, $rootScope) {
+    return {
+        restrict: "EA",
+        controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
+            $scope.operateClass = 'glyphicon-triangle-bottom';
+        }],
+        link: function ($scope, element, attr) {
+            element.on('click', function() {
+                $(this).toggleClass('glyphicon-triangle-top');
+                $('div[name=' + attr.expandOrContract + ']').toggleClass('contract');
+            });
+        }
+    }
+});
+
+/**
+ * 导航内容展开或者收缩
+ */
+appDirective.directive('navExpandOrContract', function ($location, $state, $rootScope) {
+    return {
+        restrict: "EA",
+        controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
+            $scope.operateClass = 'glyphicon-triangle-bottom';
+        }],
+        link: function ($scope, element, attr) {
+            element.on('click', function() {
+                $(this).toggleClass('glyphicon-menu-down glyphicon-menu-up');
+                $(this).parents('div[name=' + attr.navExpandOrContract + ']').toggleClass('nav-contract');
+            });
+        }
+    }
+});
+
+/**
+ *内容自动展开或者收缩 一般栅格
+ */
+appDirective.directive('th', function ($location, $state, $rootScope) {
+    return {
+        restrict: "EA",
+        controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
+            $scope.operateClass = 'glyphicon-triangle-bottom';
+        }],
+        link: function ($scope, element, attr) {
+            element.on('click', function() {
+                $('div[name=' + attr.th + ']').removeClass('datas-line');
+                $('div[name=' + attr.th + ']').removeClass('col-md-6');
+                $('div[name=' + attr.th + ']').removeClass('col-md-12');
+                $('div[name=' + attr.th + ']').addClass('anime-datas');
+                $('div[name=' + attr.th + ']').addClass('col-md-4');
+            });
+        }
+    }
+});
+
+/**
+ *内容自动展开或者收缩 行列表形式
+ */
+appDirective.directive('thList', function ($location, $state, $rootScope) {
+    return {
+        restrict: "EA",
+        controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
+            $scope.operateClass = 'glyphicon-triangle-bottom';
+        }],
+        link: function ($scope, element, attr) {
+            element.on('click', function() {
+                $('div[name=' + attr.thList + ']').removeClass('col-md-4');
+                $('div[name=' + attr.thList + ']').removeClass('col-md-6');
+                $('div[name=' + attr.thList + ']').addClass('col-md-12');
+                $('div[name=' + attr.thList + ']').addClass('anime-datas');
+                $('div[name=' + attr.thList + ']').addClass('datas-line');
+            });
+        }
+    }
+});
+
+/**
+ * 内容自动展开或者收缩 大栅格
+ */
+appDirective.directive('thLarge', function ($location, $state, $rootScope) {
+    return {
+        restrict: "EA",
+        controller: ["$scope", "$rootScope", function ($scope, $rootScope) {
+            $scope.operateClass = 'glyphicon-triangle-bottom';
+        }],
+        link: function ($scope, element, attr) {
+            element.on('click', function() {
+                $('div[name=' + attr.thLarge + ']').removeClass('datas-line');
+                $('div[name=' + attr.thLarge + ']').removeClass('col-md-4');
+                $('div[name=' + attr.thLarge + ']').removeClass('col-md-12');
+                $('div[name=' + attr.thLarge + ']').addClass('anime-datas');
+                $('div[name=' + attr.thLarge + ']').addClass('col-md-6');
+            });
+        }
+    }
+});
+
+/**
  * 认证指令，处理成功|失败的提示信息
  */
-appDirective.directive('login',
-    function ($location, $state, commonService, AUTH_EVENTS) {
-        return {
-            restrict: 'A',
-            link: function ($scope, elem, attr) {
-                var loginSuccess = function () {
-                    commonService.openOperateModel(null, null, '', {});//跳转到登录成功页
-                };
+appDirective.directive('login', function ($location, $state, commonService, AUTH_EVENTS) {
+    return {
+        restrict: 'A',
+        link: function ($scope, elem, attr) {
+            var loginSuccess = function () {
+                commonService.openOperateModel(null, null, '', {});//跳转到登录成功页
+            };
 
-                var loginFailed = function () {
-                    commonService.openOperateModel(null, null, '', {});
-                };
+            var loginFailed = function () {
+                commonService.openOperateModel(null, null, '', {});
+            };
 
-                $scope.$on(AUTH_EVENTS.loginSuccess, loginSuccess);//登录成功
-                $scope.$on(AUTH_EVENTS.loginFailed, loginFailed);//登录失败
-            }
-        };
-    })
+            $scope.$on(AUTH_EVENTS.loginSuccess, loginSuccess);//登录成功
+            $scope.$on(AUTH_EVENTS.loginFailed, loginFailed);//登录失败
+        }
+    };
+});
 
 /**
  * 认证权限信息指令，处理页面权限的提示信息
@@ -347,8 +495,8 @@ appDirective.directive('authInfo',
                 $scope.$on(AUTH_EVENTS.notAuthorized, notAuthorizedInfo);//没有授权
                 $scope.$on(AUTH_EVENTS.sessionTimeout, sessionTimeoutInfo)//登录超时
             }
-    };
-});
+        };
+    });
 
 //播放指令-播放
 appDirective.directive("ngPlay", ["$timeout", "$interval", function (timer, $interval) {
@@ -590,7 +738,8 @@ appDirective.directive('loadingLabel', [function () {
                         canMove = false;
                     } else {
                         canMove = true;
-                    };
+                    }
+                    ;
                 });
 
                 if (!canMove) {

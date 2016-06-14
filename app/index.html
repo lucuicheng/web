@@ -44,7 +44,7 @@
                 <!--endcustom -->
     <!-- endbuild -->
 </head>
-<body ng-app="owWebApp" ng-controller="applicationController">
+<body ng-app="webApp" ng-controller="applicationController">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -53,8 +53,23 @@
 <!--<div ng-if="loading">
     这里是进度条
 </div>-->
-<!-- need auth-info, class + animate effect -->
+
+<!-- 内容区域 -->
+<!--  need auth-info, class + animate effect -->
 <div class="main" ui-view="" auth-info>
+</div>
+
+<!-- 跳转顶部、手机浏览 -->
+<div>
+    <div class="jump-top">
+        <span class="glyphicon glyphicon-arrow-up"></span>
+    </div>
+    <div class="to-phone">
+        <img src="images/QRCode.png" class="img-responsive" alt="">
+    </div>
+    <div class="qr-code">
+        <img src="images/QRCode.png" class="img-responsive" alt="">
+    </div>
 </div>
 
 <!-- build:js(.) scripts/vendor.js -->
@@ -78,6 +93,8 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/common/jsAddress.js"></script>
 <script src="scripts/common/main.js"></script>
+<script src="scripts/common/syntaxhighlighter/shCore.js"></script>
+<script src="scripts/common/syntaxhighlighter/shLegacy.js"></script>
 <script src="scripts/common/syntaxhighlighter/shAutoloader.js"></script>
 <script src="scripts/common/syntaxhighlighter/shBrushAS3.js"></script>
 <script src="scripts/common/syntaxhighlighter/shBrushAppleScript.js"></script>
@@ -104,8 +121,6 @@
 <script src="scripts/common/syntaxhighlighter/shBrushSql.js"></script>
 <script src="scripts/common/syntaxhighlighter/shBrushVb.js"></script>
 <script src="scripts/common/syntaxhighlighter/shBrushXml.js"></script>
-<script src="scripts/common/syntaxhighlighter/shCore.js"></script>
-<script src="scripts/common/syntaxhighlighter/shLegacy.js"></script>
 <script src="scripts/controllers/controller.js"></script>
 <script src="scripts/directives/directive.js"></script>
 <script src="scripts/filters/filter.js"></script>

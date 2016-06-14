@@ -1,9 +1,9 @@
 'use strict';
 
-var blankModuleController = angular.module('blankModuleController', []);
+var apiModuleController = angular.module('apiModuleController', []);
 
-blankModuleController.controller(
-    'blankMainCtrl',
+apiModuleController.controller(
+    'apiMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 
@@ -11,8 +11,8 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
-    'blankListCtrl',
+apiModuleController.controller(
+    'apiListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 
@@ -20,8 +20,8 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
-    'blankDetailCtrl',
+apiModuleController.controller(
+    'apiDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
 

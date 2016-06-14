@@ -6,7 +6,14 @@ var services = [
     'teacherService',
     //auto inject from module
     'blankModuleService',
-    'indexModuleService',	'resumeModuleService',	'blogModuleService',	'projectModuleService',	'demoModuleService',	'toolsModuleService',	//end inject
+    'indexModuleService',
+	'resumeModuleService',
+	'blogModuleService',
+	'projectModuleService',
+	'demoModuleService',
+	'toolsModuleService',
+	'apiModuleService',
+	//end inject
 ]
 
 var appService = angular.module('appService', services);
@@ -27,7 +34,7 @@ appService.factory('commonService',
                 return {
                     'url': 'http://127.0.0.1:9000/',
                     /*'url' : 'http://www.dfzhgx.com/',*/
-                    'project': 'owWeb'
+                    'project': 'web'
                 };
             },
 

@@ -1,22 +1,22 @@
 'use strict';
 
-var blankModuleRoute = angular.module('blankModuleRoute', []);
+var apiModuleRoute = angular.module('apiModuleRoute', []);
 
-blankModuleRoute.config(function ($stateProvider) {
+apiModuleRoute.config(function ($stateProvider) {
     $stateProvider
-        .state('blank-main', {
-            url: '/blank/basic.htm?type&id',
-            templateUrl: 'modules/blank/views/main.html',
-            controller: 'blankMainCtrl',
+        .state('api-main', {
+            url: '/api/index.htm',
+            templateUrl: 'modules/api/views/main.html',
+            controller: 'apiMainCtrl',
         })
-        .state('blank-list', {
-            url: '/blank/list.htm?type&id',
-            templateUrl: 'modules/blank/views/list.html',
-            controller: 'blankListCtrl',
+        .state('api-list', {
+            url: '/api/list.htm',
+            templateUrl: 'modules/api/views/list.html',
+            controller: 'apiListCtrl',
         })
-        .state('blank-detail', {
-            url: '/blank/detail.htm?type&id',
-            templateUrl: 'modules/blank/views/detail.html',
-            controller: 'blankDetailCtrl',
+        .state('api-detail', {
+            url: '/api/detail.htm',
+            templateUrl: 'modules/api/views/detail.html',
+            controller: 'apiDetailCtrl',
         });
 });

@@ -15,7 +15,7 @@ resumeModuleRoute.config(function ($stateProvider) {
             controller: 'resumeListCtrl',
         })
         .state('resume-detail', {
-            url: '/resume/detail.htm?type&id',
+            url: '/resume/detail.htm',
             templateUrl: 'modules/resume/views/detail.html',
             controller: 'resumeDetailCtrl',
         })
