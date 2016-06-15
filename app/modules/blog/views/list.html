@@ -1,4 +1,4 @@
-<div class="row nav-label" nav-shrink="">
+<div class="row nav-label" nav-shrink name="navLabel">
     <div class="col-md-1 col-sm-1 col-xs-3 no-padding-left-right text-center">
         <span class="label label-default">Default</span>
     </div>
@@ -53,19 +53,19 @@
     <div class="col-md-1 col-sm-1 col-xs-3 no-padding-left-right text-center">
         <span class="label label-default">Default</span>
     </div>
-    <span class="glyphicon glyphicon glyphicon-menu-down hidden-sm hidden-md hidden-lg"></span>
+    <span class="glyphicon glyphicon glyphicon-menu-down hidden-sm hidden-md hidden-lg" nav-expand-or-contract="navLabel"></span>
 </div>
 <div class="row nav-search">
     <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 text-center">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
-                <a class="btn btn-default" type="button">Go!</a>
+                <a class="btn btn-default" type="button" translate="SEARCH_BUTTON"></a>
             </span>
         </div>
     </div>
     <div class="label label-default">
-       <span class="glyphicon glyphicon-search"></span> Search
+       <span class="glyphicon glyphicon-search"></span> {{'SEARCH' | translate}}
     </div>
 </div>
 <div class="row nav-tags">
@@ -96,7 +96,16 @@
         <div class="label label-danger">Danger</div>
     </div>
     <div class="label label-default">
-        <span class="glyphicon glyphicon-tag"></span> Tags
+        <span class="glyphicon glyphicon-tag"></span> {{'TAGS' | translate}}
+    </div>
+</div>
+<div class="row nav-language">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12" style="padding: 15px">
+        <language name="SIMPLIFIED CHINESE" key="zh"></language>
+        <language name="ENGLISH" key="en"></language>
+    </div>
+    <div class="label label-default">
+        <span class="fa fa-language"></span> {{'LANGUAGE' | translate}}
     </div>
 </div>
 

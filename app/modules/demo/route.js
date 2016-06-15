@@ -18,5 +18,10 @@ demoModuleRoute.config(function ($stateProvider) {
             url: '/demo/detail.htm?type&id',
             templateUrl: 'modules/demo/views/detail.html',
             controller: 'demoDetailCtrl',
+        })
+        .state('demo-demo', {
+            url: '/demo/special/:name.htm?type&id',
+            templateUrl: 'modules/demo/views/demo.html',
+            controller: 'demoSpecialCtrl',
         });
 });

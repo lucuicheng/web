@@ -310,11 +310,6 @@ appDirective.directive('navShrink', function ($location, $state, $compile, $root
             //$rootScope.pageClass = 'resume-page-up';
         }],
         link: function ($scope, element, attr) {
-            var count = $('.nav-label').find('div').length;
-            if(count > 12) {//导航标题超过12个时隐藏
-                $('.glyphicon-menu-down').removeClass('hidden-sm hidden-md hidden-lg');
-            }
-
             var height = 0
             $("div[class^='row nav-']").each(function () {//复制一份导航内容所有
                 var _class = $(this).prop('class');
@@ -376,6 +371,11 @@ appDirective.directive('navExpandOrContract', function ($location, $state, $root
             $scope.operateClass = 'glyphicon-triangle-bottom';
         }],
         link: function ($scope, element, attr) {
+            var count = $('.nav-label').find('div').length;
+            if(count > 12) {//导航标题超过12个时隐藏
+                $('.glyphicon-menu-down').removeClass('hidden-sm hidden-md hidden-lg');
+            }
+
             element.on('click', function() {
                 $(this).toggleClass('glyphicon-menu-down glyphicon-menu-up');
                 $(this).parents('div[name=' + attr.navExpandOrContract + ']').toggleClass('nav-contract');
@@ -498,7 +498,9 @@ appDirective.directive('authInfo',
         };
     });
 
-//播放指令-播放
+/**
+ * 播放指令-播放
+ */
 appDirective.directive("ngPlay", ["$timeout", "$interval", function (timer, $interval) {
     return {
         restrict: "A",
@@ -560,7 +562,9 @@ appDirective.directive("ngPlay", ["$timeout", "$interval", function (timer, $int
 }]);
 
 
-//选择指令-选择
+/**
+ * 选择指令-选择
+ */
 appDirective.directive("customSelect", ["$timeout", function (timer) {
     return {
         restrict: "A",
@@ -583,7 +587,9 @@ appDirective.directive("customSelect", ["$timeout", function (timer) {
     };
 }]);
 
-//渲染后处理1
+/**
+ * 渲染后处理1
+ */
 appDirective.directive("handleHtmlPart", ["$timeout", function (timer) {
     return {
         restrict: "A",
@@ -605,7 +611,9 @@ appDirective.directive("handleHtmlPart", ["$timeout", function (timer) {
     };
 }]);
 
-//轮播指令
+/**
+ * 轮播指令
+ */
 appDirective.directive("owlCarousel", ["$timeout", function (timer) {
     return {
         restrict: "A",
@@ -641,8 +649,137 @@ appDirective.directive("owlCarousel", ["$timeout", function (timer) {
     };
 }]);
 
+/**
+ * 侧边内容，相对之前一个标准的指令插件
+ */
+appDirective.directive('sideContent', ['$rootScope', function ($rootScope) {
+    return {
+        restrict: "EA",
+        controller: function($scope, $element){
+            $scope.topContent = '测试侧边栏'
+            $scope.leftContent = "上面三行语句都可以正确执行，因为首先它们都是赋值语句，而不是声明语句；其次它们的圆括号都不属于模式的一部分。第一行语句中，模式是取数组的第一个成员，跟圆括号无关；第二行语句中，模式是p，而不是d；第三行语句与第一行语句的性质一致。上面三行语句都可以正确执行，因为首先它们都是赋值语句，而不是声明语句；其次它们的圆括号都不属于模式的一部分。第一行语句中，模式是取数组的第一个成员，跟圆括号无关；第二行语句中，模式是p，而不是d；第三行语句与第一行语句的性质一致。"
+            $scope.rightContent = "上面三行语句都可以正确执行，因为首先它们都是赋值语句，而不是声明语句；其次它们的圆括号都不属于模式的一部分。第一行语句中，模式是取数组的第一个成员，跟圆括号无关；第二行语句中，模式是p，而不是d；第三行语句与第一行语句的性质一致。上面三行语句都可以正确执行，因为首先它们都是赋值语句，而不是声明语句；其次它们的圆括号都不属于模式的一部分。第一行语句中，模式是取数组的第一个成员，跟圆括号无关；第二行语句中，模式是p，而不是d；第三行语句与第一行语句的性质一致。";
+        },
+        scope: {
+            topContent:'=',
+            toptType:'@',
+            leftContent: '=',
+            leftType: '@',
+            rightContent: '=',
+            rightType: '@',
+        },
+        templateUrl: 'modules/common/views/side.html',
+        link: function ($scope, elem, attr) {
 
-//下拉刷新指令
+            $scope.showLeft = false;
+            $scope.showRight = false;
+
+            var changeContent = function (status) {
+                var change = {};
+                if(status) {
+                    change.scroll = true;
+                    change.blur = true;
+                } else {
+                    change.scroll = false;
+                    change.blur = false;
+                }
+                $rootScope.$broadcast('changeContent', change);
+            }
+
+            $scope.showLeftSide = function() {
+                $scope.showLeft = !$scope.showLeft;
+                changeContent($scope.showLeft || $scope.showRight);
+            };
+
+            $scope.showRightSide = function() {
+                $scope.showRight = !$scope.showRight;
+                changeContent($scope.showLeft || $scope.showRight);
+            };
+
+            $scope.$on('resetSide', function (event, reset) {
+                $scope.showLeft = reset.showLeft;
+                $scope.showRight = reset.showRight;
+            });
+        }
+    };
+}]);
+
+/**
+ * 中间主体内容，相对之前一个标准的指令插件
+ */
+appDirective.directive('centerContent', ['$rootScope', function ($rootScope) {
+    return {
+        restrict: "EA",
+        controller: function($scope, $element){
+            $scope.content = "上面三行语句都可以正确执行，因为首先它们都是赋值语句，而不是声明语句；其次它们的圆括号都不属于模式的一部分。第一行语句中，模式是取数组的第一个成员，跟圆括号无关；第二行语句中，模式是p，而不是d；第三行语句与第一行语句的性质一致。上面三行语句都可以正确执行，因为首先它们都是赋值语句，而不是声明语句；其次它们的圆括号都不属于模式的一部分。第一行语句中，模式是取数组的第一个成员，跟圆括号无关；第二行语句中，模式是p，而不是d；第三行语句与第一行语句的性质一致。";
+        },
+        scope: {
+            content:'=',
+            contentUrl:'@',
+            type:'@'
+        },
+        templateUrl: 'modules/common/views/content.html',
+        link: function ($scope, elem, attr) {
+
+            $scope.resetSide = function () {
+                $scope.scroll = false;
+                $scope.blur = false;
+
+                var reset = {};
+                reset.showLeft = false;
+                reset.showRight = false;
+                $rootScope.$broadcast('resetSide', reset);
+            }
+
+            $scope.$on('changeContent', function (event, change) {
+                $scope.scroll = change.scroll;
+                $scope.blur = change.blur;
+            });
+
+        }
+    };
+}]);
+
+/**
+ * 语言切换，另一种相对之前的一个标准的指令插件
+ */
+appDirective.directive('language', ['$translate', function ($translate) {
+    return {
+        restrict: "EA",
+        controller: function($scope, $element){
+            $scope.changeLanguage = function (langKey) {
+                $translate.use(langKey)
+            }
+        },
+        scope: {
+            name:'@',
+            key:'@',
+        },
+        template: '<div class="label label-default" translate="{{name}}" ng-click="changeLanguage(key)"></div>',
+        link: function ($scope, elem, attr) {
+
+            $scope.resetSide = function () {
+                $scope.scroll = false;
+                $scope.blur = false;
+
+                var reset = {};
+                reset.showLeft = false;
+                reset.showRight = false;
+                $rootScope.$broadcast('resetSide', reset);
+            }
+
+            $scope.$on('changeContent', function (event, change) {
+                $scope.scroll = change.scroll;
+                $scope.blur = change.blur;
+            });
+
+        }
+    };
+}]);
+
+/**
+ * 下拉刷新指令
+ */
 appDirective.directive('loadingLabel', [function () {
     return {
         restrict: "EA",

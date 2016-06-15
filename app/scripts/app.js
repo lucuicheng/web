@@ -2,7 +2,7 @@
 
 var webApp = angular.module('webApp', ['ngAnimate', 'ngCookies',
     'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.router',
-    'ui.bootstrap',
+    'ui.bootstrap','pascalprecht.translate',
 
     'appController', 'appService', 'appRoute',
     'appDirective', 'appFilter']);
@@ -11,6 +11,25 @@ webApp
     .config(function ($locationProvider, $httpProvider) {
         //拦截器
         $httpProvider.interceptors.push('httpInterceptor');
+    })
+    .config(function($translateProvider) {
+        $translateProvider.useStaticFilesLoader({
+            files : [ {
+                prefix : '/i18n/locale-',
+                suffix : '.json'
+            } ]
+        });
+        $translateProvider.registerAvailableLanguageKeys([ 'en', 'zh' ], {
+            'en_US' : 'en',
+            'en_UK' : 'en',
+            'zh_CN' : 'zh'
+        });
+        // set preferred lang
+        $translateProvider.preferredLanguage('en');
+        // auto determine preferred lang
+        //$translateProvider.determinePreferredLanguage();
+        // when can not determine lang, choose en lang.
+        //$translateProvider.fallbackLanguage('en');
     });
 
 //全局常量, 权限相关的事件
