@@ -1,0 +1,56 @@
+<canvas id="myCanvas" width="300" height="768" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+<script>
+    var _canvas = document.getElementById("myCanvas");
+    var _canvasContext = null;
+    var count = -50;
+
+    //使用双缓冲技术
+    if (_canvas && _canvas.getContext) {
+        _canvasContext = _canvas.getContext('2d');
+        _canvasBuffer = document.createElement('canvas');//离屏canvas，复杂图形画到离屏canvas中，然后再一起画到屏幕中
+        _canvasBuffer.width = _canvas.width;
+        _canvasBuffer.height = _canvas.height;
+        _canvasBufferContext = _canvasBuffer.getContext('2d');
+    }
+
+//    autoDraw();
+
+    //render();
+
+    function render(time) {
+        console.log(time);//时间
+        _canvasContext.clearRect(0, 0, 301, 769);//使用这种方式进行刷新
+        //使用requestAnimationFrame实现动画效果
+        drawRect(_canvasBufferContext);
+        _canvasContext.drawImage(_canvasBuffer, 0, 0);
+        requestAnimationFrame(render);
+    }
+
+    //使用setInterval实现动画效果
+    function autoDraw() {
+        setInterval(function () {
+            drawRect(ctx);
+        }, 1000 / 60);
+    }
+
+    //绘制图形
+    function drawRect(ctx) {
+        count = count + (768 / 8000) * (1000 / 60);
+        if(count > 769) {
+            count = -50;
+        }
+        ctx.clearRect(0, 0, 301, 769);
+        ctx.beginPath();//路径绘制的时候，动画效果必须重新开始
+        ctx.rect(0, count, 80, 50);
+        ctx.lineWidth="1";
+        ctx.strokeStyle="red"; // 红色路径
+        ctx.stroke();
+    }
+
+    function random(min,max){
+        return Math.floor(min+Math.random()*(max-min));
+    }
+
+</script>
