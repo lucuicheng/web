@@ -4,7 +4,13 @@ var routes = [
     //auto inject from module
     'blankModuleRoute',
     'indexModuleRoute',
-	'resumeModuleRoute',	'blogModuleRoute',	'projectModuleRoute',	'demoModuleRoute',	'toolsModuleRoute',	'apiModuleRoute',	//end inject
+	'resumeModuleRoute',
+	'blogModuleRoute',
+	'projectModuleRoute',
+	'demoModuleRoute',
+	'toolsModuleRoute',
+	'apiModuleRoute',
+	//end inject
 ]
 
 var appRoute = angular.module('appRoute', routes);
@@ -12,7 +18,7 @@ var appRoute = angular.module('appRoute', routes);
 appRoute.config(
     function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
         $stateProvider
-            .state('inde', {
+            .state('index', {
                 url: '/',
                 templateUrl: 'modules/index/views/main.html',
                 controller: 'indexMainCtrl',

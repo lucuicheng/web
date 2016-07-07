@@ -278,9 +278,9 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/images',
+                    cwd: '<%= yeoman.app %>/images/',
                     src: '{,*/}*.{png,jpg,jpeg,gif}',
-                    dest: '<%= yeoman.dist %>/images'
+                    dest: '<%= yeoman.dist %>/images/'
                 }]
             }
         },
@@ -538,6 +538,9 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
+
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.registerTask('img', ['imagemin']);
 
     grunt.registerTask('module_clean_all', function() {
         grunt.task.run([

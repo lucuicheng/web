@@ -1,8 +1,6 @@
 'use strict';
 
-var indexModuleController = angular.module('indexModuleController', []);
-
-indexModuleController.controller(
+webApp.register.controller(
     'indexMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ indexModuleController.controller(
     }
 );
 
-indexModuleController.controller(
+webApp.register.controller(
     'indexListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -20,7 +18,7 @@ indexModuleController.controller(
     }
 );
 
-indexModuleController.controller(
+webApp.register.controller(
     'indexDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}

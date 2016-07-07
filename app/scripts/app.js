@@ -12,7 +12,38 @@ webApp
         //拦截器
         $httpProvider.interceptors.push('httpInterceptor');
     })
+    .config(function($controllerProvider, $compileProvider, $filterProvider, $provide) {
+        //动态加载注册器
+        webApp.register = {
+            controller: $controllerProvider.register,
+            directive: $compileProvider.directive,
+            filter: $filterProvider.register,
+            factory: $provide.factory,
+            service: $provide.service
+        };
+        //动态加载js文件
+        webApp.asyncJs = function (dependencies) {
+            return ["$q", "$route", "$rootScope", function ($q, $route, $rootScope) {
+                var deferred = $q.defer();
+                var v = new Date().getTime();
+                if (Array.isArray(dependencies)) {
+                    for (var i = 0; i < dependencies.length; i++) {
+                        dependencies[i] += "?v=" + v;
+                    }
+                } else {
+                    dependencies += "?v=" + v;//v是版本号
+                }
+                $script(dependencies, function () {
+                    $rootScope.$apply(function () {
+                        deferred.resolve();
+                    });
+                });
+                return deferred.promise;
+            }];
+        }
+    })
     .config(function($translateProvider) {
+        //国际化处理
         $translateProvider.useStaticFilesLoader({
             files : [ {
                 prefix : '/i18n/locale-',
@@ -24,12 +55,7 @@ webApp
             'en_UK' : 'en',
             'zh_CN' : 'zh'
         });
-        // set preferred lang
         $translateProvider.preferredLanguage('en');
-        // auto determine preferred lang
-        //$translateProvider.determinePreferredLanguage();
-        // when can not determine lang, choose en lang.
-        //$translateProvider.fallbackLanguage('en');
     });
 
 //全局常量, 权限相关的事件

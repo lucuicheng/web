@@ -67,7 +67,7 @@ authService.factory('authService',
         };
 
         authService.permissionCheck = function (currentPath) {//特殊权限及其他情况的处理,一般都是登录后操作,
-
+            
         };
 
         return authService;

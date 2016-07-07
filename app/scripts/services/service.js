@@ -6,7 +6,6 @@ var services = [
     'teacherService',
     //auto inject from module
     'blankModuleService',
-    'indexModuleService',
 	'resumeModuleService',
 	'blogModuleService',
 	'projectModuleService',
