@@ -4,6 +4,7 @@ var indexModuleRoute = angular.module('indexModuleRoute', []);
 
 indexModuleRoute.config(function ($stateProvider) {
     var dependencies = [
+        '/scripts/services/teacherService.js',
         '/modules/index/controller.js',
         '/modules/index/service.js'
     ];

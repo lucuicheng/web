@@ -3,16 +3,6 @@
 var services = [
     'interceptor',
     'authService',
-    'teacherService',
-    //auto inject from module
-    'blankModuleService',
-	'resumeModuleService',
-	'blogModuleService',
-	'projectModuleService',
-	'demoModuleService',
-	'toolsModuleService',
-	'apiModuleService',
-	//end inject
 ]
 
 var appService = angular.module('appService', services);

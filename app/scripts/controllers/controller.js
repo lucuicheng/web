@@ -1,15 +1,6 @@
 'use strict';
 
 var controllers = [
-    //auto inject from module
-    'blankModuleController',
-	'resumeModuleController',
-	'blogModuleController',
-	'projectModuleController',
-	'demoModuleController',
-	'toolsModuleController',
-	'apiModuleController',
-	//end inject
 ]
 
 var appController = angular.module('appController', controllers);

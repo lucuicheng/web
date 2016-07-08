@@ -1,8 +1,6 @@
 'use strict';
 
-var teacherService = angular.module('teacherService', []);
-
-teacherService.factory('teacherService', function($http, commonService) {
+webApp.register.factory('teacherService', function($http, commonService) {
 
   var service = { // our factory definition
 
