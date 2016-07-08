@@ -21,26 +21,6 @@ webApp
             factory: $provide.factory,
             service: $provide.service
         };
-        //动态加载js文件
-        webApp.asyncJs = function (dependencies) {
-            return ["$q", "$route", "$rootScope", function ($q, $route, $rootScope) {
-                var deferred = $q.defer();
-                var v = new Date().getTime();
-                if (Array.isArray(dependencies)) {
-                    for (var i = 0; i < dependencies.length; i++) {
-                        dependencies[i] += "?v=" + v;
-                    }
-                } else {
-                    dependencies += "?v=" + v;//v是版本号
-                }
-                $script(dependencies, function () {
-                    $rootScope.$apply(function () {
-                        deferred.resolve();
-                    });
-                });
-                return deferred.promise;
-            }];
-        }
     })
     .config(function($translateProvider) {
         //国际化处理
@@ -57,6 +37,27 @@ webApp
         });
         $translateProvider.preferredLanguage('en');
     });
+
+//动态加载js文件
+webApp.asyncJs = function (dependencies) {
+    return ["$q", "$route", "$rootScope", function ($q, $route, $rootScope) {
+        var deferred = $q.defer();
+        var v = new Date().getTime();//
+        if (Array.isArray(dependencies)) {
+            for (var i = 0; i < dependencies.length; i++) {
+                dependencies[i] += "?v=" + v;
+            }
+        } else {
+            dependencies += "?v=" + v;//v是版本号
+        }
+        $script(dependencies, function () {
+            $rootScope.$apply(function () {
+                deferred.resolve();
+            });
+        });
+        return deferred.promise;
+    }];
+}
 
 //全局常量, 权限相关的事件
 webApp.constant('AUTH_EVENTS', {
@@ -85,7 +86,6 @@ webApp.run(
         //视图开始解析
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
-
 
                 /*//用户认证及访问权限控制 TODO 设置方法
                 if(!authService.isAuthenticated() ) {//没有用户登录

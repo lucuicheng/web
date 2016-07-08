@@ -1,8 +1,6 @@
 'use strict';
 
-var projectModuleController = angular.module('projectModuleController', []);
-
-projectModuleController.controller(
+webApp.register.controller(
     'projectMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ projectModuleController.controller(
     }
 );
 
-projectModuleController.controller(
+webApp.register.controller(
     'projectListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -20,7 +18,7 @@ projectModuleController.controller(
     }
 );
 
-projectModuleController.controller(
+webApp.register.controller(
     'projectDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}

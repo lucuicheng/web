@@ -1,8 +1,6 @@
 'use strict';
 
-var blogModuleController = angular.module('blogModuleController', []);
-
-blogModuleController.controller(
+webApp.register.controller(
     'blogMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ blogModuleController.controller(
     }
 );
 
-blogModuleController.controller(
+webApp.register.controller(
     'blogListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -20,7 +18,7 @@ blogModuleController.controller(
     }
 );
 
-blogModuleController.controller(
+webApp.register.controller(
     'blogDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}

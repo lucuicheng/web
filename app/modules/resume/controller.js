@@ -1,8 +1,6 @@
 'use strict';
 
-var resumeModuleController = angular.module('resumeModuleController', []);
-
-resumeModuleController.controller(
+webApp.register.controller(
     'resumeMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ resumeModuleController.controller(
     }
 );
 
-resumeModuleController.controller(
+webApp.register.controller(
     'resumeListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {};
@@ -19,7 +17,7 @@ resumeModuleController.controller(
     }
 );
 
-resumeModuleController.controller(
+webApp.register.controller(
     'resumePageCtrl',
     function ($scope, $stateParams, $rootScope) {
         $scope.formData = {};

@@ -1,8 +1,6 @@
 'use strict';
 
-var blankModuleController = angular.module('blankModuleController', []);
-
-blankModuleController.controller(
+webApp.register.controller(
     'blankMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
+webApp.register.controller(
     'blankListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -20,7 +18,7 @@ blankModuleController.controller(
     }
 );
 
-blankModuleController.controller(
+webApp.register.controller(
     'blankDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}

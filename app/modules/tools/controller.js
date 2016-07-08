@@ -1,8 +1,6 @@
 'use strict';
 
-var toolsModuleController = angular.module('toolsModuleController', []);
-
-toolsModuleController.controller(
+webApp.register.controller(
     'toolsMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ toolsModuleController.controller(
     }
 );
 
-toolsModuleController.controller(
+webApp.register.controller(
     'toolsListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -20,7 +18,7 @@ toolsModuleController.controller(
     }
 );
 
-toolsModuleController.controller(
+webApp.register.controller(
     'toolsDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}

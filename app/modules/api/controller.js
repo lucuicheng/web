@@ -1,8 +1,6 @@
 'use strict';
 
-var apiModuleController = angular.module('apiModuleController', []);
-
-apiModuleController.controller(
+webApp.register.controller(
     'apiMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ apiModuleController.controller(
     }
 );
 
-apiModuleController.controller(
+webApp.register.controller(
     'apiListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -20,7 +18,7 @@ apiModuleController.controller(
     }
 );
 
-apiModuleController.controller(
+webApp.register.controller(
     'apiDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}

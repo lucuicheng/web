@@ -1,8 +1,6 @@
 'use strict';
 
-var demoModuleController = angular.module('demoModuleController', []);
-
-demoModuleController.controller(
+webApp.register.controller(
     'demoMainCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -11,7 +9,7 @@ demoModuleController.controller(
     }
 );
 
-demoModuleController.controller(
+webApp.register.controller(
     'demoListCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
@@ -20,7 +18,7 @@ demoModuleController.controller(
     }
 );
 
-demoModuleController.controller(
+webApp.register.controller(
     'demoDetailCtrl',
     function ($scope, $stateParams) {
         $scope.formData = {}
